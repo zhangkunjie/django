@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+<p>请输入两个数字</p>
+<table border=1>
+<form method='post'>
+{% csrf_token %}
+{{ form.as_table}}
+<tr><td colspan="2"><input type="submit" value="提交"></td></tr>
+</form>
+</table>
+</body>
+</html>
