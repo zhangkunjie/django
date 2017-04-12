@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+{% load staticfiles %}
+<script type="text/javascript"  src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+<script type="text/javascript">
+function getStudentInfoFun(obj)
+{
+	$.ajax({
+		  url: "/getStudentInfo",
+		  data: {
+		    id: $("#sid").val()
+		  },
+		  success: function( data ) {
+		  studentInfo="<tr><td>"+data.id+"</td><td>"+data.name+"</td><td>"+data.sex+"</td><td>"+data.age+"</td></tr>"	  
+		  $("#tbody").html(studentInfo)
+		  }
+		});
+}
+</script>
+</head>
+<body>
+<p>ajax应用获取学生信息</p>
+学号：<input type="text" name="sid" id="sid"/>
+<input type="button" value="获取学生信息" onclick="getStudentInfoFun()">
+<table border="1" >
+ <tr><td>学号</td><td>姓名</td><td>性别</td><td>年龄</td></tr>
+ <tbody id="tbody"></tbody>
+</table>
+<h3>CSRF（Cross-site request forgery跨站请求伪造，也被称为“one click attack”或者session riding，通常缩写为CSRF或者XSRF，
+ 是一种对网站的恶意利用。 尽管听起来像跨站脚本（XSS），但它与XSS非常不同，并且攻击方式几乎相左。XSS利用站点内的信任用户， 而CSRF则通过伪装来自受信任用户的请求来
+ 利用受信任的网站。与XSS攻击相比，CSRF攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比XSS更具危险性。
+Django 中自带了 防止CSRF攻击的功能，但是一些新手不知道如何使用，给自己编程带来了麻烦。常常会出现下面django csrf token missing or incorrect的错误。</h3>
+1对于form:加入 "{\% csrf_token \%}"
+<xmp>
+<div style="width:300px;height:200px;border:1px dashed red" ></div>
+<form method="POST" action="/post-url/">
+    {\% csrf_token \%}
+    <input name='zqxt' value="自强学堂学习Django技术">
+</form>
+</xmp>
+1对于ajax:在模板中加入"{\% csrf_token \%}"
+<xmp>
+$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '"{\% csrf_token \%}"' },
+});
+</xmp>
+</body>
+</html>
