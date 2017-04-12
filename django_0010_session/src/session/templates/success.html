@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+登陆成功！您的账户是:{{request.session.username}},密码是：{{request.session.password}}</br>
+list:
+{% for i in request.session.list%}
+   <li>{{i}}</li>
+{%endfor%}
+
+</form>
+</body>
+</html>
