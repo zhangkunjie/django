@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>静态文件</p>
+STATIC_ROOT：
+运行上边提到的命令：python manage.py collectstatic 之后静态文件将要复制到的目录，
+这个目录只有在运行collectstatic时候才会用到，不能想当然的以为这个目录和MEDIA_ROOT的作用是相同的，
+否则在开发环境的时候可能一直无法找到静态文件。
+例子：
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')</br>
+STATIC_URL：
+这个默认的是app下的静态文件夹，在前端使用static标签的时候首先查找的是自己app下的这个文件夹，
+如果没有再去STATICFILES_DIRS下找
+例子：
+STATIC_URL = '/static/'</br>
+STATICFILES_DIRS:
+ 其它 存放静态文件的文件夹，里面不能包含 STATIC_ROOT
+ 指的是各个app公用的一些静态文件比如jquery.js等
+ 在前台页面使用的时候也是使用staic标签来查找
+例子：
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static_commons"),
+)</br>
+部署时
+1. 收集静态文件
+python manage.py collectstatic
+这一句话就会把以前放在app下static中的静态文件全部拷贝到 settings.py 中设置的 STATIC_ROOT 文件夹中</br>
+{% load staticfiles %}
+<p1>app下的static图片文件</p1></br>
+<img  src="{% static "images/dm.jpg" %}"/></br>
+<p1>公共模块下的图片文件</p1></br>
+<img  src="{% static "dm1.jpg" %}"/></br>
+<h1></h1>
+</body>
+</html>
