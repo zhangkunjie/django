@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var  jsonStr1={{jsonStr1|safe}}
+//for(i in jsonStr1 )
+  //alert(jsonStr1[i])  
+var  jsonStr2={{jsonStr2|safe}}
+for(j in jsonStr2 )
+   alert(j+jsonStr2[j])
+var sjson= {{sjson|safe}} 
+alert(sjson.name)
+</script>
+</head>
+<body>
+{%include 'head.html'%}
+职位列表</br>
+{% for i in list %}
+{{i}}</br>
+{%endfor%}
+{%include 'bottom.html'%}
+人员信息：</br>
+{% for key,value in info_dict.items %}
+{{key}}:{{value}}</br>
+{%endfor%}
+{%include 'bottom.html'%}
+</body>
+</html>
