@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>学生信息模板</h1>
+<table border="1">
+<tr><td>学号</td><td>姓名</td><td>性别</td><td>年龄</td></tr>
+{% for s in studentList %}
+<tr><td>{{s.id}}</td><td>{{s.name}}</td><td>{{s.sex}}</td><td>{{s.age}}</td></tr>
+{%endfor%}
+</table>
+</body>
+</html>
